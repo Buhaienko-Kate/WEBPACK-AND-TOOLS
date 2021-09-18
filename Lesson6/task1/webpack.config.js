@@ -1,38 +1,24 @@
+const path = require('path');
+
 module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
   },
   module: {
     rules: [
-      // {
-      //   test: /\.css$/,
-      //   use: [
-      //     // style-loader
-      //     { loader: 'style-loader' },
-      //     // css-loader
-      //     {
-      //       loader: 'css-loader',
-      //       options: {
-      //         modules: true,
-      //       },
-      //     },
-      //     // sass-loader
-      //     { loader: 'sass-loader' },
-      //   ],
-      // },
       {
-        test: /.s?css$/,
+        test: /\.s?css$/i,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /.(jpg|png)$/,
+        test: /\.(png|jpg|gif)$/i,
         use: [
           {
             loader: 'url-loader',
             options: {
               limit: 8192,
-              name: '[name].[ext]',
               outputPath: 'images',
             },
           },
